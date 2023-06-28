@@ -43,9 +43,10 @@ const d_text = document.getElementById('d_text')
 const submitBtn = document.getElementById('submit')
 var startBtn = document.getElementById('start')
 let currentQuiz = 0;
-let score = 0;
-let timeLeft = 40;
-var timer = document.getElementById('timer')
+
+var timeLeft = 40;
+var time = document.getElementById('time')
+
 
 
 
@@ -82,18 +83,18 @@ function getSelected () {
 
 timerInterval = setInterval(function () {
     timeLeft--;
-    Timer.textContent = timeLeft;
+    time.textContent = timeLeft;
     if (timeLeft === 0) {
       clearInterval(timerInterval);
-      scorePage();
     }
   }, 1000);
+  
 
 submitBtn.addEventListener('click', () => {
     const answer = getSelected()
     if(answer) {
         if(answer !== quizData[currentQuiz].correct) {
-           score ++
+           timeLeft -10000;
          }
 
          currentQuiz ++
