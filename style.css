@@ -6,10 +6,41 @@ body{
     background-image: linear-gradient(300 deg white,  blue);
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     height: 400px;
     margin: 0;
+}
+
+#scores {
+    width: 50%;
+    padding:50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 1000;
+    font-size: 22px;
+    text-decoration: underline;
+}
+
+.time {
+    width: 50%;
+    text-align: right;
+    padding: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 1000;
+    font-size: 22px;
+    text-decoration: underline;
+}
+
+#scores:hover{
+    cursor: pointer;
+    color: chartreuse;
+
+}
+
+.time:hover {
+    cursor: pointer;
+    color: chartreuse;
 }
 
 
@@ -60,6 +91,7 @@ button {
     height: 40px;
     cursor: pointer;
     font-size: 22px;
+    padding-right: 20px;
 
 }
 
@@ -67,9 +99,9 @@ button:hover {
     background-color: rgb(36, 87, 163);
 }
 
-button:focus {
-    outline: whitesmoke;
-    color: rgb(35, 172, 76);
+/* button:focus { */
+    /* outline: whitesmoke; */
+    /* color: rgb(35, 172, 76); */
 
 
-}
+/* } */

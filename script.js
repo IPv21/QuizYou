@@ -42,8 +42,15 @@ const c_text = document.getElementById('c_text')
 const d_text = document.getElementById('d_text')
 const submitBtn = document.getElementById('submit')
 var startBtn = document.getElementById('start')
-let currentQuiz = 0
-let score = 0
+let currentQuiz = 0;
+let score = 0;
+let timeLeft = 40;
+var timer = document.getElementById('timer')
+
+
+
+
+
 
 function loadQuiz() {
 
@@ -73,11 +80,20 @@ function getSelected () {
     return answer
 }
 
+timerInterval = setInterval(function () {
+    timeLeft--;
+    Timer.textContent = timeLeft;
+    if (timeLeft === 0) {
+      clearInterval(timerInterval);
+      scorePage();
+    }
+  }, 1000);
+
 submitBtn.addEventListener('click', () => {
     const answer = getSelected()
     if(answer) {
         if(answer !== quizData[currentQuiz].correct) {
-          score ++
+           score ++
          }
 
          currentQuiz ++
@@ -85,7 +101,7 @@ submitBtn.addEventListener('click', () => {
               loadQuiz()
 
          } else {
-            quiz.innerHTML= `<h2>You  answered ${score}/${quizData.length} questions correctly</h2>
+            quiz.innerHTML= `<h2>You have${timeLeft} seconds left.</h2>
             <button onclick="location.reload()"></button>`
         
          }
@@ -97,6 +113,3 @@ startBtn.addEventListener('click', function(){
     loadQuiz()
 
 })
-
-
-
