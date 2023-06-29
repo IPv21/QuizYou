@@ -81,14 +81,7 @@ function getSelected () {
     return answer
 }
 
-timerInterval = setInterval(function () {
-    timeLeft--;
-    time.textContent = timeLeft;
-    if (timeLeft === 0) {
-      clearInterval(timerInterval);
-    }
-  }, 1000);
-  
+
 
 submitBtn.addEventListener('click', () => {
     const answer = getSelected()
@@ -111,6 +104,15 @@ submitBtn.addEventListener('click', () => {
 })
 
 startBtn.addEventListener('click', function(){
+
     loadQuiz()
+    timerInterval = setInterval(function () {
+        timeLeft--;
+        time.textContent = timeLeft;
+        if (timeLeft === 0) {
+          clearInterval(timerInterval);
+        }
+      }, 1000);
+      
 
 })
