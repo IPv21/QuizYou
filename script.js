@@ -43,9 +43,11 @@ const d_text = document.getElementById('d_text')
 const submitBtn = document.getElementById('submit')
 var startBtn = document.getElementById('start')
 let currentQuiz = 0;
-
+var bbb = document.getElementById('aaa');
+var initialContainer = document.getElementById('#initials');
 var timeLeft = 40;
-var time = document.getElementById('time')
+var time = document.getElementById('time');
+var highScore = 0;
 
 
 
@@ -83,12 +85,15 @@ function getSelected () {
 
 
 
+
 submitBtn.addEventListener('click', () => {
     const answer = getSelected()
     if(answer) {
         if(answer !== quizData[currentQuiz].correct) {
-           timeLeft -10000;
+           timeLeft -=10;
          }
+
+
 
          currentQuiz ++
          if(currentQuiz < quizData.length) {
@@ -97,8 +102,23 @@ submitBtn.addEventListener('click', () => {
          } else {
             quiz.innerHTML= `<h2>You have${timeLeft} seconds left.</h2>
             <button onclick="location.reload()"></button>`
+
+            highScore = timeLeft;
+            console.log(timeLeft);
+
+
+
+
+
+
+            clearInterval(timerInterval);
+            bbb.style.display="block";
+
         
          }
+
+
+
 
     }
 })
@@ -109,10 +129,33 @@ startBtn.addEventListener('click', function(){
     timerInterval = setInterval(function () {
         timeLeft--;
         time.textContent = timeLeft;
-        if (timeLeft === 0) {
+        if (timeLeft < 1) {
           clearInterval(timerInterval);
         }
       }, 1000);
       
+    
 
 })
+
+getinitials.addEventListener('click', function(event) {
+       event.preventDefault();
+   
+       var storageItem  
+       if (localStorage.getItem('highScore')){
+        storageItem =  JSON.parse(localStorage.getItem('highScore'));
+        
+       }
+        else { 
+            storageItem = []
+            
+        }
+        storageItem.push({initials, highScore})
+        localStorage.setItem('highScore', JSON.stringify(storageItem));
+
+                 
+
+
+})
+
+
